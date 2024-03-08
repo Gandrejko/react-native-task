@@ -1,0 +1,17 @@
+{
+  "translation": {
+    "auth": {
+      "sign_in": "Sign in",
+      "sign_up": "Sign up",
+      "continue": "Continue",
+      "create_pin": "Create a Pin code",
+      "repeat_pin": "Repeat a Pin code",
+      "enter_code": "enter 5 digit code",
+      "email": "E-mail",
+      "password": "Password",
+      "name": "Name",
+      "personal_account": "Personal Account",
+      "create_account": "Create Account",
+    }
+  }
+}
