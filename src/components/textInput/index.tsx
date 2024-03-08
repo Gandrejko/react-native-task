@@ -13,13 +13,12 @@ import styles from './styles';
 export type InputProps = TextInputProps & {
   containerStyles?: StyleProp<ViewStyle>;
   inputStyles?: StyleProp<TextStyle>;
-  error?: boolean;
   errorMessage?: string;
   label?: string;
 };
 
 const Input: ForwardRefRenderFunction<TextInput, InputProps> = (
-  {label, containerStyles, inputStyles, error, errorMessage, ...inputProps},
+  {label, containerStyles, inputStyles, errorMessage, ...inputProps},
   ref,
 ) => {
   return (
@@ -28,7 +27,7 @@ const Input: ForwardRefRenderFunction<TextInput, InputProps> = (
       <TextInput
         ref={ref}
         placeholderTextColor={styles.placeholder.color}
-        style={[styles.input, inputStyles, error && styles.error]}
+        style={[styles.input, inputStyles, errorMessage && styles.error]}
         {...inputProps}
       />
       {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}

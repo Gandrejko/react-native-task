@@ -27,6 +27,8 @@ const styles = EStyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    minHeight: 50,
+    maxHeight: 70,
   },
   icon: {
     width: 50,
@@ -46,7 +48,9 @@ const styles = EStyleSheet.create({
     backgroundColor: '$secondary',
     marginVertical: 20,
   },
-  inputs: {},
+  inputs: {
+    marginBottom: 40,
+  },
 });
 
 export default styles;
