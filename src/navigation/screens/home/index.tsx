@@ -1,3 +1,5 @@
+import {useQuery} from '@tanstack/react-query';
+import axios from 'axios';
 import Card from './card';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
@@ -18,13 +20,16 @@ type Post = {
   body: string;
 };
 
-const mockPosts = Array(10)
-  .fill({
-    title: 'How to take shower?',
-    body: "The weather outside is lovely today, isn't it? I can't wait to take a stroll through the park.",
-  })
-  .map((post, index) => ({...post, id: index}));
 const Home = () => {
+  const {data: posts} = useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const {data} = await axios.get<Post[]>(
+        'https://jsonplaceholder.typicode.com/posts',
+      );
+      return data;
+    },
+  });
   const {t} = useTranslation();
   return (
     <SafeAreaView style={styles.screen}>
@@ -66,7 +71,7 @@ const Home = () => {
         <View style={styles.postsContainer}>
           <Text style={styles.sectionTitle}>{t('home.posts')}</Text>
           <View style={styles.posts}>
-            {mockPosts.map(({id, title, body}) => (
+            {posts?.map(({id, title, body}) => (
               <View key={id} style={styles.post}>
                 <Text style={styles.postTitle}>{title}</Text>
                 <Text style={styles.postBody}>{body}</Text>
