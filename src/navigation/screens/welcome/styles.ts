@@ -4,6 +4,9 @@ const styles = EStyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: '$background',
+  },
+  content: {
+    flex: 1,
     padding: 15,
   },
   grow: {

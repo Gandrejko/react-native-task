@@ -15,6 +15,7 @@ export type InputProps = TextInputProps & {
   inputStyles?: StyleProp<TextStyle>;
   errorMessage?: string;
   label?: string;
+  iconName?: string;
 };
 
 const Input: ForwardRefRenderFunction<TextInput, InputProps> = (

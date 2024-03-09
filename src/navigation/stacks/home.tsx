@@ -12,7 +12,7 @@ function HomeStack() {
   const {t} = useTranslation();
   return (
     <Tab.Navigator
-      initialRouteName={'SettingsStack'}
+      initialRouteName={'Search'}
       screenOptions={{
         headerShown: false,
       }}>

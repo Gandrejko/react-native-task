@@ -3,7 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const styles = EStyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '$background',
+    backgroundColor: '$secondary',
   },
   content: {
     padding: 20,
@@ -14,33 +14,40 @@ const styles = EStyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-  user: {
+  inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 20,
-    borderWidth: 2,
-    borderColor: '$secondary',
-    padding: 20,
     borderRadius: 15,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '$textLight',
   },
-  icon: {
-    width: 40,
-    height: 40,
-    borderRadius: 50,
-    backgroundColor: '$secondary',
-    marginRight: 20,
-  },
-  name: {
+  input: {
     color: '$text',
     fontSize: 18,
+    marginLeft: 10,
   },
-  section: {
-    marginTop: 30,
-  },
-  label: {
+  placeholder: {
     color: '$textLight',
-    fontSize: 16,
+  },
+  posts: {
+    marginTop: 20,
+  },
+  post: {
+    backgroundColor: '$background',
+    padding: 15,
     marginBottom: 10,
+    borderRadius: 15,
+  },
+  postTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  postBody: {
+    fontSize: 16,
+    color: '$textLight',
   },
 });
 

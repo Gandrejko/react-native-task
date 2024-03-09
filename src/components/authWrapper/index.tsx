@@ -1,3 +1,4 @@
+import AppStatusBar from '@components/appStatusBar';
 import Button from '@components/button';
 import React from 'react';
 import {SubmitHandler} from 'react-hook-form';
@@ -28,7 +29,7 @@ const AuthWrapper = ({
   const {t} = useTranslation();
   return (
     <SafeAreaView style={styles.screen}>
-      <StatusBar barStyle={'light-content'} />
+      <AppStatusBar />
       <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
         <Image style={styles.bg} source={require('@assets/bg.png')} />
         <View style={styles.form}>

@@ -34,6 +34,12 @@
       "logout": "Log Out",
       "basic": "Basic",
       "other": "Other"
+    },
+    "search": {
+      "search": "Search",
+      "search_products": "Search Products",
+      "name": "Name",
+      "id": "ID"
     }
   }
 }

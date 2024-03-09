@@ -4,8 +4,10 @@ const styles = EStyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: '$background',
+  },
+  content: {
     padding: 20,
-    paddingTop: 60,
+    paddingTop: 50,
   },
   title: {
     color: '$text',

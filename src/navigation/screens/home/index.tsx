@@ -1,3 +1,4 @@
+import AppStatusBar from '@components/appStatusBar';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Card from './card';
@@ -14,7 +15,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 
-type Post = {
+export type Post = {
   id: number;
   title: string;
   body: string;
@@ -33,7 +34,7 @@ const Home = () => {
   const {t} = useTranslation();
   return (
     <SafeAreaView style={styles.screen}>
-      <StatusBar barStyle={'light-content'} />
+      <AppStatusBar />
       <ScrollView>
         <View style={styles.banner}>
           <Text style={styles.subtitle}>{t('home.your_name')}</Text>

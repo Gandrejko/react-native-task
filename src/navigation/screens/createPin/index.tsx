@@ -1,3 +1,4 @@
+import AppStatusBar from '@components/appStatusBar';
 import Button from '@components/button';
 import NumKeyboard from '@components/numKeyboard';
 import PinDots from '@components/pinDots';
@@ -46,7 +47,7 @@ const CreatePin = () => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <StatusBar barStyle={'light-content'} />
+      <AppStatusBar />
       <View style={styles.icon}></View>
       <Text style={styles.title}>{t('auth.create_pin')}</Text>
       <Text style={styles.subtitle}>{t('auth.enter_code')}</Text>

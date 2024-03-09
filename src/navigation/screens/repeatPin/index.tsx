@@ -1,3 +1,4 @@
+import AppStatusBar from '@components/appStatusBar';
 import Button from '@components/button';
 import NumKeyboard from '@components/numKeyboard';
 import PinDots from '@components/pinDots';
@@ -30,7 +31,6 @@ const RepeatPin = () => {
     const result = await LocalAuthentication.authenticateAsync({
       promptMessage: 'Do you want to allow "Dawma" to use Face ID',
     });
-    console.log(result);
   };
 
   const onPress = (number: number | string) => {
@@ -58,13 +58,13 @@ const RepeatPin = () => {
     } catch (err: any) {
       console.log('err', err);
     } finally {
-      navigation.navigate('Welcome');
+      navigation.navigate('HomeStack', {screen: 'Home'});
     }
   };
 
   return (
     <SafeAreaView style={styles.screen}>
-      <StatusBar barStyle={'light-content'} />
+      <AppStatusBar />
       <View style={styles.icon}></View>
       <Text style={styles.title}>{t('auth.repeat_pin')}</Text>
       <Text style={styles.subtitle}>{t('auth.enter_code')}</Text>
