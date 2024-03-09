@@ -34,7 +34,7 @@ const styles = EStyleSheet.create({
     width: 50,
     height: 50,
     backgroundColor: '$secondary',
-    borderRadius: '50%',
+    borderRadius: 50,
     marginRight: 10,
   },
   title: {

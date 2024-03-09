@@ -11,9 +11,10 @@ const Welcome = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <StatusBar barStyle={'light-content'} />
+      <Image style={styles.bg} source={require('@assets/bg.png')} />
       <View style={styles.grow}></View>
       <Button
-        onPress={() => navigation.navigate('AuthStack', {screen: 'Login'})}
+        onPress={() => navigation.navigate('AuthStack', {screen: 'CreatePin'})}
         text="Sign in"
         variant="outlined"
       />

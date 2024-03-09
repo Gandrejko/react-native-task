@@ -4,6 +4,7 @@ export default EStyleSheet.create({
   btn: {
     paddingVertical: 15,
     borderRadius: 15,
+    alignItems: 'center',
   },
   container: {
     flexDirection: 'row',

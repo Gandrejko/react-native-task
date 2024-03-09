@@ -24,6 +24,8 @@ module.exports = function (api) {
             '@components': './src/components',
             '@localization': './src/localization',
             '@assets': './src/assets',
+            '@constants': './src/constants',
+            '@hooks': './src/hooks',
           },
         },
       ],

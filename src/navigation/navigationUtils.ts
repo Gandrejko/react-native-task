@@ -13,6 +13,8 @@ export type AppStackParamList = {
 export type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
+  CreatePin: undefined;
+  RepeatPin: undefined;
 };
 
 export type AppStackProps = StackScreenProps<AppStackParamList, 'Welcome'>;

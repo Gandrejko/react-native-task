@@ -11,7 +11,7 @@ export const contained = EStyleSheet.create({
 
 export const outlined = EStyleSheet.create({
   btn: {
-    backgroundColor: '$background',
+    backgroundColor: 'transparent',
   },
   text: {
     color: '$primary',
