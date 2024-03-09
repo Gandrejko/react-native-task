@@ -11,7 +11,17 @@
       "password": "Password",
       "name": "Name",
       "personal_account": "Personal Account",
-      "create_account": "Create Account",
+      "create_account": "Create Account"
+    },
+    "home": {
+      "your_name": "Your name",
+      "personal_advisor": "Personal Advisor",
+      "schedule": "Schedule a call",
+      "before": "Before you Start",
+      "link_bank": "Link your Bank Account",
+      "add_wallet": "Add Wallet",
+      "steps": "steps",
+      "posts": "Posts",
     }
   }
 }
