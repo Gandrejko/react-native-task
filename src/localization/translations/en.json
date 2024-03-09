@@ -13,6 +13,11 @@
       "personal_account": "Personal Account",
       "create_account": "Create Account"
     },
+    "tabs": {
+      "home": "Home",
+      "search": "Wallet",
+      "settings": "Settings"
+    },
     "home": {
       "your_name": "Your name",
       "personal_advisor": "Personal Advisor",
@@ -21,7 +26,14 @@
       "link_bank": "Link your Bank Account",
       "add_wallet": "Add Wallet",
       "steps": "steps",
-      "posts": "Posts",
+      "posts": "Posts"
+    },
+    "settings": {
+      "settings": "Settings",
+      "language": "Language",
+      "logout": "Log Out",
+      "basic": "Basic",
+      "other": "Other"
     }
   }
 }

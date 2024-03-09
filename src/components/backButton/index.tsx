@@ -7,7 +7,7 @@ import styles from './styles';
 const BackButton = (props: TouchableOpacityProps) => {
   return (
     <TouchableOpacity onPress={goBack} {...props} style={styles.button}>
-      <Icon name={'arrow-left'} color={'#000'} size={32} />
+      <Icon name={'chevron-left'} color={'#000'} size={32} />
     </TouchableOpacity>
   );
 };

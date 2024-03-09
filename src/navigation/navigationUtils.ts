@@ -9,6 +9,7 @@ export type AppStackParamList = {
   Welcome: undefined;
   AuthStack: NavigatorScreenParams<AuthStackParamList>;
   HomeStack: NavigatorScreenParams<HomeStackParamList>;
+  SettingsStack: NavigatorScreenParams<SettingsStackParamList>;
 };
 
 export type AuthStackParamList = {
@@ -21,7 +22,12 @@ export type AuthStackParamList = {
 export type HomeStackParamList = {
   Home: undefined;
   Search: undefined;
+  SettingsStack: NavigatorScreenParams<SettingsStackParamList>;
+};
+
+export type SettingsStackParamList = {
   Settings: undefined;
+  Language: undefined;
 };
 
 export type AppStackProps = StackScreenProps<AppStackParamList, 'Welcome'>;
@@ -29,6 +35,11 @@ export type AppStackProps = StackScreenProps<AppStackParamList, 'Welcome'>;
 export type AuthStackProps = StackScreenProps<AuthStackParamList, 'Login'>;
 
 export type HomeStackProps = StackScreenProps<HomeStackParamList, 'Home'>;
+
+export type SettingsStackProps = StackScreenProps<
+  SettingsStackParamList,
+  'Settings'
+>;
 
 export const navigationRef = createNavigationContainerRef<AppStackParamList>();
 

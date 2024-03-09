@@ -1,16 +1,18 @@
 import {HomeStackParamList} from '@navigation/navigationUtils';
 import Home from '@navigation/screens/home';
 import Search from '@navigation/screens/search';
-import Settings from '@navigation/screens/settings';
+import SettingsStack from '@navigation/stacks/settings';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Feather';
 
 const Tab = createBottomTabNavigator<HomeStackParamList>();
 
 function HomeStack() {
+  const {t} = useTranslation();
   return (
     <Tab.Navigator
-      initialRouteName={'Home'}
+      initialRouteName={'SettingsStack'}
       screenOptions={{
         headerShown: false,
       }}>
@@ -19,6 +21,7 @@ function HomeStack() {
           tabBarIcon: ({size, color}) => (
             <Icon name={'home'} size={size} color={color} />
           ),
+          title: t('tabs.home'),
         }}
         name="Home"
         component={Home}
@@ -28,6 +31,7 @@ function HomeStack() {
           tabBarIcon: ({size, color}) => (
             <Icon name={'search'} size={size} color={color} />
           ),
+          title: t('tabs.search'),
         }}
         name="Search"
         component={Search}
@@ -37,9 +41,10 @@ function HomeStack() {
           tabBarIcon: ({size, color}) => (
             <Icon name={'settings'} size={size} color={color} />
           ),
+          title: t('tabs.settings'),
         }}
-        name="Settings"
-        component={Settings}
+        name="SettingsStack"
+        component={SettingsStack}
       />
     </Tab.Navigator>
   );
