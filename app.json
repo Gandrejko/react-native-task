@@ -20,7 +20,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.gandrejko.reactnativetask"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -32,6 +33,11 @@
           "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e597bedf-7aec-411d-9757-8f6720b673ef"
+      }
+    }
   }
 }
