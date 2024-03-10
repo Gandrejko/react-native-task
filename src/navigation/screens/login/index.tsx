@@ -1,29 +1,49 @@
 import AuthWrapper from '@components/authWrapper';
 import TextInput from '@components/textInput';
+import {AppStackProps, AuthStackProps} from '@navigation/navigationUtils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import {useMutation} from '@tanstack/react-query';
+import axios from 'axios/index';
 import React from 'react';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 
 export type LoginFormValues = {
-  email: string;
+  name: string;
   password: string;
 };
 
 const Login = () => {
   const {t} = useTranslation();
+  const navigation = useNavigation<AuthStackProps['navigation']>();
   const {
     handleSubmit,
     control,
     formState: {errors},
   } = useForm<LoginFormValues>({
     defaultValues: {
-      email: '',
+      name: '',
       password: '',
     },
   });
 
+  const {mutate} = useMutation({
+    mutationKey: ['login'],
+    mutationFn: (data: LoginFormValues) =>
+      axios.post('https://dummyjson.com/auth/login', {
+        username: 'kminchelle',
+        password: '0lelplR',
+      }),
+    onSuccess: data => {
+      AsyncStorage.setItem('session', JSON.stringify(data.data));
+      navigation.navigate('CreatePin');
+    },
+    onError: error => console.log(error),
+  });
+
   const onSubmit: SubmitHandler<LoginFormValues> = data => {
-    console.log(data);
+    mutate(data);
   };
 
   return (
@@ -35,17 +55,17 @@ const Login = () => {
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            label="E-mail"
+            label="Name"
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
             value={value}
-            errorMessage={errors.email?.message}
+            errorMessage={errors.name?.message}
           />
         )}
-        name="email"
+        name="name"
         rules={{
-          required: 'Email is required',
-          pattern: {value: /\S+@\S+\.\S+/, message: 'Invalid email'},
+          required: 'Name is required',
+          pattern: {value: /\w+/, message: 'Invalid name'},
         }}
       />
       <Controller

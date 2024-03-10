@@ -4,10 +4,9 @@ import NumKeyboard from '@components/numKeyboard';
 import PinDots from '@components/pinDots';
 import {AuthStackProps} from '@navigation/navigationUtils';
 import {useNavigation} from '@react-navigation/native';
-import * as LocalAuthentication from 'expo-local-authentication';
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {SafeAreaView, View, Text, StatusBar, Alert} from 'react-native';
+import {SafeAreaView, View, Text} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import styles from './styles';
 

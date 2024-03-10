@@ -1,5 +1,5 @@
 import AppStatusBar from '@components/appStatusBar';
-import {Post} from '@navigation/screens/home';
+import {IPost} from '@types';
 import {useQueryClient} from '@tanstack/react-query';
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
@@ -11,8 +11,8 @@ const Search = () => {
   const {t} = useTranslation();
   const [search, setSearch] = useState<string>('');
   const queryClient = useQueryClient();
-  const posts = queryClient.getQueryData<Post[]>(['posts']);
-  const [filteredPosts, setFilteredPosts] = useState<Post[]>(posts || []);
+  const posts = queryClient.getQueryData<IPost[]>(['posts']);
+  const [filteredPosts, setFilteredPosts] = useState<IPost[]>(posts || []);
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -1,10 +1,10 @@
 import AppStatusBar from '@components/appStatusBar';
 import Button from '@components/button';
 import {HomeStackParamList} from '@navigation/navigationUtils';
-import {Post as PostType} from '@navigation/screens/home';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useQueryClient} from '@tanstack/react-query';
 import {useQuery} from '@tanstack/react-query';
+import {IPost, IComment} from '@types';
 import axios from 'axios/index';
 import {Image} from 'expo-image';
 import React from 'react';
@@ -12,25 +12,17 @@ import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import styles from './styles';
 
-type Comment = {
-  postId: number;
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-};
-
 const Post = ({route}: StackScreenProps<HomeStackParamList, 'Post'>) => {
   const {postId} = route.params || {};
   const {t} = useTranslation();
   const queryClient = useQueryClient();
   const post = queryClient
-    .getQueryData<PostType[]>(['posts'])
+    .getQueryData<IPost[]>(['posts'])
     ?.find(p => p.id === postId);
   const {data: comments} = useQuery({
     queryKey: ['comments', 1],
     queryFn: async () => {
-      const {data} = await axios.get<Comment[]>(
+      const {data} = await axios.get<IComment[]>(
         `https://jsonplaceholder.typicode.com/comments?postId=${1}`,
       );
       return data;

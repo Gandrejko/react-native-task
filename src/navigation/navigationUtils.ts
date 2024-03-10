@@ -6,6 +6,7 @@ import {
 import {StackScreenProps} from '@react-navigation/stack';
 
 export type AppStackParamList = {
+  AppInit: undefined;
   Welcome: undefined;
   AuthStack: NavigatorScreenParams<AuthStackParamList>;
   PrivateStack: NavigatorScreenParams<PrivateStackParamList>;

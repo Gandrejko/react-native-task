@@ -2,6 +2,7 @@ import AppStatusBar from '@components/appStatusBar';
 import {HomeStackProps} from '@navigation/navigationUtils';
 import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
+import {IPost} from '@types';
 import axios from 'axios';
 import Card from './card';
 import React from 'react';
@@ -17,17 +18,11 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 
-export type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
-
 const Home = () => {
   const {data: posts} = useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
-      const {data} = await axios.get<Post[]>(
+      const {data} = await axios.get<IPost[]>(
         'https://jsonplaceholder.typicode.com/posts',
       );
       return data;
