@@ -36,6 +36,9 @@ const styles = EStyleSheet.create({
     backgroundColor: '$secondary',
     borderRadius: 50,
     marginRight: 10,
+    color: '$primary',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     fontWeight: 'bold',

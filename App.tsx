@@ -4,6 +4,8 @@ import {createAsyncStoragePersister} from '@tanstack/query-async-storage-persist
 import {QueryClient} from '@tanstack/react-query';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {PersistQueryClientProvider} from '@tanstack/react-query-persist-client';
+import {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -39,6 +41,13 @@ const persister = createAsyncStoragePersister({
 });
 
 function App() {
+  const {i18n} = useTranslation();
+  useEffect(() => {
+    (async () => {
+      const language = (await AsyncStorage.getItem('language')) || undefined;
+      await i18n.changeLanguage(language);
+    })();
+  }, []);
   return (
     <PersistQueryClientProvider
       client={queryClient}

@@ -1,4 +1,5 @@
 import AuthWrapper from '@components/authWrapper';
+import Button from '@components/button';
 import TextInput from '@components/textInput';
 import {AppStackProps, AuthStackProps} from '@navigation/navigationUtils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -35,8 +36,8 @@ const Login = () => {
         username: 'kminchelle',
         password: '0lelplR',
       }),
-    onSuccess: data => {
-      AsyncStorage.setItem('session', JSON.stringify(data.data));
+    onSuccess: async data => {
+      await AsyncStorage.setItem('session', JSON.stringify(data.data));
       navigation.navigate('CreatePin');
     },
     onError: error => console.log(error),
@@ -48,6 +49,7 @@ const Login = () => {
 
   return (
     <AuthWrapper
+      iconName="user"
       onSubmit={handleSubmit(onSubmit)}
       title={t('auth.sign_in')}
       subtitle={t('auth.personal_account')}>
@@ -97,6 +99,11 @@ const Login = () => {
               'Password must contain a lowercase letter, an uppercase letter and a special character',
           },
         }}
+      />
+      <Button
+        text={t('auth.create_account')}
+        variant="outlined"
+        onPress={() => navigation.navigate('Register')}
       />
     </AuthWrapper>
   );

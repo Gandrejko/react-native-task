@@ -7,10 +7,10 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   ScrollView,
-  StatusBar,
   Text,
   View,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
 import {Image} from 'expo-image';
 
@@ -19,12 +19,14 @@ type AuthWrapperProps = {
   title: string;
   subtitle: string;
   onSubmit: SubmitHandler<any>;
+  iconName: string;
 };
 const AuthWrapper = ({
   children,
   title,
   subtitle,
   onSubmit,
+  iconName,
 }: AuthWrapperProps) => {
   const {t} = useTranslation();
   return (
@@ -34,7 +36,9 @@ const AuthWrapper = ({
         <Image style={styles.bg} source={require('@assets/bg.png')} />
         <View style={styles.form}>
           <View style={styles.header}>
-            <View style={styles.icon}></View>
+            <View style={styles.icon}>
+              <Icon name={iconName} color={styles.icon.color} size={32} />
+            </View>
             <View>
               <Text style={styles.title}>{title}</Text>
               <Text style={styles.subtitle}>{subtitle}</Text>

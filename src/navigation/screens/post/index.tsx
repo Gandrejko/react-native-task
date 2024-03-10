@@ -1,6 +1,6 @@
 import AppStatusBar from '@components/appStatusBar';
 import Button from '@components/button';
-import {HomeStackParamList} from '@navigation/navigationUtils';
+import {goBack, HomeStackParamList} from '@navigation/navigationUtils';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useQueryClient} from '@tanstack/react-query';
 import {useQuery} from '@tanstack/react-query';
@@ -20,10 +20,10 @@ const Post = ({route}: StackScreenProps<HomeStackParamList, 'Post'>) => {
     .getQueryData<IPost[]>(['posts'])
     ?.find(p => p.id === postId);
   const {data: comments} = useQuery({
-    queryKey: ['comments', 1],
+    queryKey: ['comments', postId],
     queryFn: async () => {
       const {data} = await axios.get<IComment[]>(
-        `https://jsonplaceholder.typicode.com/comments?postId=${1}`,
+        `https://jsonplaceholder.typicode.com/comments?postId=${postId}`,
       );
       return data;
     },
@@ -60,7 +60,7 @@ const Post = ({route}: StackScreenProps<HomeStackParamList, 'Post'>) => {
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button text={t('post.back')} />
+        <Button text={t('post.back')} onPress={goBack} />
       </View>
     </SafeAreaView>
   );

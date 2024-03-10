@@ -2,6 +2,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type NumKeyboardProps = {
   onPress: (number: number | string) => void;
@@ -20,7 +21,13 @@ const NumKeyboard = ({onPress, onRemove}: NumKeyboardProps) => {
         </TouchableOpacity>
       ))}
       <TouchableOpacity onPress={onRemove} style={styles.button}>
-        <Text style={styles.buttonText}>{`<=`}</Text>
+        <Text>
+          <Icon
+            name="backspace-outline"
+            color={styles.buttonText.color}
+            size={32}
+          />
+        </Text>
       </TouchableOpacity>
     </View>
   );

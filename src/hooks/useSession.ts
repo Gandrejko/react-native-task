@@ -9,16 +9,11 @@ import {AppStackProps} from '@navigation/navigationUtils';
 const useSession = () => {
   const navigation = useNavigation<AppStackProps['navigation']>();
   const runUnauthorizedUserFlow = useCallback(() => {
-    navigation.navigate('Welcome');
+    navigation.replace('AuthStack', {screen: 'Welcome'});
   }, []);
 
   const runAuthorizedUserFlow = useCallback(() => {
-    navigation.navigate('PrivateStack', {
-      screen: 'HomeStack',
-      params: {
-        screen: 'Home',
-      },
-    });
+    navigation.replace('CheckPin');
   }, []);
 
   useEffect(() => {
@@ -30,10 +25,9 @@ const useSession = () => {
         if (!pin) {
           throw new Error('Pin not found');
         }
-        console.log('session restored');
+
         runAuthorizedUserFlow();
       } catch {
-        console.log('session not restored');
         await AsyncStorage.removeItem('session').catch(() => null);
         runUnauthorizedUserFlow();
       }

@@ -11,11 +11,11 @@
       "password": "Password",
       "name": "Name",
       "personal_account": "Personal Account",
-      "create_account": "Create Account"
+      "create_account": "Create Account",
     },
     "tabs": {
       "home": "Home",
-      "search": "Wallet",
+      "search": "Search",
       "settings": "Settings"
     },
     "home": {
@@ -45,6 +45,13 @@
       "about": "About",
       "comments": "Comments",
       "back": "Back"
+    },
+    "welcome": {
+      "lending": "Crowd Lending",
+      "estate": "Crowd real estate",
+      "commodities": "Commodities",
+      "efts": "ETFs",
+      "crypto": "Crypto"
     }
   }
 }

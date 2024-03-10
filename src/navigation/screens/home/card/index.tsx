@@ -15,7 +15,9 @@ const Card = ({title, stepsCount, cardStyle}: CardProps) => {
   return (
     <View style={[styles.card, cardStyle]}>
       <View style={styles.header}>
-        <View style={styles.icon}></View>
+        <View style={styles.icon}>
+          <Icon name="link" color={'#000'} size={32} />
+        </View>
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>{title}</Text>
         </View>

@@ -1,8 +1,11 @@
 import AuthWrapper from '@components/authWrapper';
 import TextInput from '@components/textInput';
+import {AuthStackProps} from '@navigation/navigationUtils';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
+import {Alert} from 'react-native';
 
 export type RegisterFormValues = {
   name: string;
@@ -23,12 +26,16 @@ const Register = () => {
       password: '',
     },
   });
+  const navigation = useNavigation<AuthStackProps['navigation']>();
 
   const onSubmit: SubmitHandler<RegisterFormValues> = data => {
-    console.log(data);
+    Alert.alert('You successfully registered', "Let's login to use app", [
+      {text: 'OK', onPress: () => navigation.navigate('Login')},
+    ]);
   };
   return (
     <AuthWrapper
+      iconName="adduser"
       onSubmit={handleSubmit(onSubmit)}
       title={t('auth.sign_up')}
       subtitle={t('auth.personal_account')}>

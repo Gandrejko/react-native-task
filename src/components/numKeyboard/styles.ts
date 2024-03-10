@@ -14,11 +14,12 @@ const styles = EStyleSheet.create({
   },
   button: {
     flexBasis: '33%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
     fontWeight: 'bold',
     fontSize: 35,
-    textAlign: 'center',
     color: '$textLight',
   },
 });

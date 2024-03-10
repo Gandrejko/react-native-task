@@ -1,5 +1,6 @@
 import AppStatusBar from '@components/appStatusBar';
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,6 +14,9 @@ const languages = [
 const Language = () => {
   const {t, i18n} = useTranslation();
   const language = i18n.language;
+  useEffect(() => {
+    AsyncStorage.setItem('language', language);
+  }, [language]);
   return (
     <SafeAreaView style={styles.screen}>
       <AppStatusBar />

@@ -7,12 +7,13 @@ import {StackScreenProps} from '@react-navigation/stack';
 
 export type AppStackParamList = {
   AppInit: undefined;
-  Welcome: undefined;
   AuthStack: NavigatorScreenParams<AuthStackParamList>;
+  CheckPin: undefined;
   PrivateStack: NavigatorScreenParams<PrivateStackParamList>;
 };
 
 export type AuthStackParamList = {
+  Welcome: undefined;
   Login: undefined;
   Register: undefined;
   CreatePin: undefined;
@@ -37,7 +38,7 @@ export type HomeStackParamList = {
   };
 };
 
-export type AppStackProps = StackScreenProps<AppStackParamList, 'Welcome'>;
+export type AppStackProps = StackScreenProps<AppStackParamList, 'AppInit'>;
 
 export type AuthStackProps = StackScreenProps<AuthStackParamList, 'Login'>;
 

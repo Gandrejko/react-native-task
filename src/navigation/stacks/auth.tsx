@@ -4,6 +4,7 @@ import CreatePin from '@navigation/screens/createPin';
 import Login from '@navigation/screens/login';
 import Register from '@navigation/screens/register';
 import RepeatPin from '@navigation/screens/repeatPin';
+import Welcome from '@navigation/screens/welcome';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -20,6 +21,11 @@ const AuthStack = () => {
         headerTransparent: true,
         headerLeft: BackButton,
       }}>
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="Welcome"
+        component={Welcome}
+      />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="CreatePin" component={CreatePin} />

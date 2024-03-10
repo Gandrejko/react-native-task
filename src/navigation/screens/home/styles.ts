@@ -68,7 +68,7 @@ const styles = EStyleSheet.create({
   },
   sectionTitle: {
     fontSize: 14,
-    marginLeft: 20,
+    marginHorizontal: 20,
     marginVertical: 10,
     color: '$textLight',
   },
