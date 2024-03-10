@@ -20,17 +20,28 @@ EStyleSheet.build({
   $textLight: '#606773',
 });
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      networkMode: 'offlineFirst',
+      staleTime: Infinity,
+      gcTime: Infinity, // 24 hours
+      refetchOnReconnect: 'always',
+      retry: 3,
+    },
+  },
+});
 
 const persister = createAsyncStoragePersister({
   storage: AsyncStorage,
+  key: 'REACT_QUERY_OFFLINE_CACHE',
 });
 
 function App() {
   return (
     <PersistQueryClientProvider
       client={queryClient}
-      persistOptions={{persister}}>
+      persistOptions={{persister, maxAge: Infinity}}>
       <SafeAreaProvider>
         <GestureHandlerRootView style={{flex: 1}}>
           <BottomSheetModalProvider>

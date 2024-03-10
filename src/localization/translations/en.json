@@ -40,6 +40,11 @@
       "search_products": "Search Products",
       "name": "Name",
       "id": "ID"
+    },
+    "post": {
+      "about": "About",
+      "comments": "Comments",
+      "back": "Back"
     }
   }
 }

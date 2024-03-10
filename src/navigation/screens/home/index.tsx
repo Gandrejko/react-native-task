@@ -1,4 +1,6 @@
 import AppStatusBar from '@components/appStatusBar';
+import {HomeStackProps} from '@navigation/navigationUtils';
+import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Card from './card';
@@ -32,6 +34,7 @@ const Home = () => {
     },
     select: data => data.slice(0, 3),
   });
+  const navigation = useNavigation<HomeStackProps['navigation']>();
   const {t} = useTranslation();
   return (
     <SafeAreaView style={styles.screen}>
@@ -74,10 +77,13 @@ const Home = () => {
           <Text style={styles.sectionTitle}>{t('home.posts')}</Text>
           <View style={styles.posts}>
             {posts?.map(({id, title, body}) => (
-              <View key={id} style={styles.post}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Post', {postId: id})}
+                key={id}
+                style={styles.post}>
                 <Text style={styles.postTitle}>{title}</Text>
                 <Text style={styles.postBody}>{body}</Text>
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
         </View>

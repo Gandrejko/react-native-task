@@ -1,52 +1,34 @@
+import BackButton from '@components/backButton';
 import {HomeStackParamList} from '@navigation/navigationUtils';
 import Home from '@navigation/screens/home';
-import Search from '@navigation/screens/search';
-import SettingsStack from '@navigation/stacks/settings';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Post from '@navigation/screens/post';
+import {createStackNavigator} from '@react-navigation/stack';
 import {useTranslation} from 'react-i18next';
-import Icon from 'react-native-vector-icons/Feather';
 
-const Tab = createBottomTabNavigator<HomeStackParamList>();
+const Stack = createStackNavigator<HomeStackParamList>();
 
 function HomeStack() {
   const {t} = useTranslation();
   return (
-    <Tab.Navigator
-      initialRouteName={'Search'}
+    <Stack.Navigator
+      initialRouteName={'Home'}
       screenOptions={{
-        headerShown: false,
+        animationEnabled: false,
+        headerShown: true,
+        headerTitle: '',
+        headerBackTitle: '',
+        headerTransparent: true,
+        headerLeft: BackButton,
       }}>
-      <Tab.Screen
+      <Stack.Screen
         options={{
-          tabBarIcon: ({size, color}) => (
-            <Icon name={'home'} size={size} color={color} />
-          ),
-          title: t('tabs.home'),
+          headerShown: false,
         }}
         name="Home"
         component={Home}
       />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({size, color}) => (
-            <Icon name={'search'} size={size} color={color} />
-          ),
-          title: t('tabs.search'),
-        }}
-        name="Search"
-        component={Search}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({size, color}) => (
-            <Icon name={'settings'} size={size} color={color} />
-          ),
-          title: t('tabs.settings'),
-        }}
-        name="SettingsStack"
-        component={SettingsStack}
-      />
-    </Tab.Navigator>
+      <Stack.Screen name="Post" component={Post} />
+    </Stack.Navigator>
   );
 }
 

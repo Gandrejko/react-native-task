@@ -58,7 +58,10 @@ const RepeatPin = () => {
     } catch (err: any) {
       console.log('err', err);
     } finally {
-      navigation.navigate('HomeStack', {screen: 'Home'});
+      navigation.navigate('PrivateStack', {
+        screen: 'HomeStack',
+        params: {screen: 'Home'},
+      });
     }
   };
 

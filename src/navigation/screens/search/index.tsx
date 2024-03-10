@@ -1,7 +1,6 @@
 import AppStatusBar from '@components/appStatusBar';
 import {Post} from '@navigation/screens/home';
-import {useQuery} from '@tanstack/react-query';
-import axios from 'axios';
+import {useQueryClient} from '@tanstack/react-query';
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
@@ -11,15 +10,8 @@ import styles from './styles';
 const Search = () => {
   const {t} = useTranslation();
   const [search, setSearch] = useState<string>('');
-  const {data: posts} = useQuery({
-    queryKey: ['posts'],
-    queryFn: async () => {
-      const {data} = await axios.get<Post[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-      );
-      return data;
-    },
-  });
+  const queryClient = useQueryClient();
+  const posts = queryClient.getQueryData<Post[]>(['posts']);
   const [filteredPosts, setFilteredPosts] = useState<Post[]>(posts || []);
 
   useEffect(() => {

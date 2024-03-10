@@ -8,8 +8,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 export type AppStackParamList = {
   Welcome: undefined;
   AuthStack: NavigatorScreenParams<AuthStackParamList>;
-  HomeStack: NavigatorScreenParams<HomeStackParamList>;
-  SettingsStack: NavigatorScreenParams<SettingsStackParamList>;
+  PrivateStack: NavigatorScreenParams<PrivateStackParamList>;
 };
 
 export type AuthStackParamList = {
@@ -19,8 +18,8 @@ export type AuthStackParamList = {
   RepeatPin: undefined;
 };
 
-export type HomeStackParamList = {
-  Home: undefined;
+export type PrivateStackParamList = {
+  HomeStack: NavigatorScreenParams<HomeStackParamList>;
   Search: undefined;
   SettingsStack: NavigatorScreenParams<SettingsStackParamList>;
 };
@@ -30,9 +29,21 @@ export type SettingsStackParamList = {
   Language: undefined;
 };
 
+export type HomeStackParamList = {
+  Home: undefined;
+  Post: {
+    postId: number;
+  };
+};
+
 export type AppStackProps = StackScreenProps<AppStackParamList, 'Welcome'>;
 
 export type AuthStackProps = StackScreenProps<AuthStackParamList, 'Login'>;
+
+export type PrivateStackProps = StackScreenProps<
+  PrivateStackParamList,
+  'HomeStack'
+>;
 
 export type HomeStackProps = StackScreenProps<HomeStackParamList, 'Home'>;
 
