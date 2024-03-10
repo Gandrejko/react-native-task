@@ -1,6 +1,12 @@
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import Navigation from '@navigation';
+import {createAsyncStoragePersister} from '@tanstack/query-async-storage-persister';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  persistQueryClient,
+  PersistQueryClientProvider,
+} from '@tanstack/react-query-persist-client';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -16,9 +22,15 @@ EStyleSheet.build({
 
 const queryClient = new QueryClient();
 
+const persister = createAsyncStoragePersister({
+  storage: AsyncStorage,
+});
+
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{persister}}>
       <SafeAreaProvider>
         <GestureHandlerRootView style={{flex: 1}}>
           <BottomSheetModalProvider>
@@ -26,7 +38,7 @@ function App() {
           </BottomSheetModalProvider>
         </GestureHandlerRootView>
       </SafeAreaProvider>
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   );
 }
 

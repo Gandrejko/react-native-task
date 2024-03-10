@@ -30,6 +30,7 @@ const Home = () => {
       );
       return data;
     },
+    select: data => data.slice(0, 3),
   });
   const {t} = useTranslation();
   return (
