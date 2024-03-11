@@ -15,12 +15,11 @@ const PinDots = ({pin}: PinDotsProps) => {
       {Array(PIN_LENGTH)
         .fill(0)
         .map((_, i) => {
-          const dotStyles = EStyleSheet.create({
-            dot: {
-              backgroundColor: i < pin.length ? '$primary' : '$secondary',
-            },
-          });
-          return <View key={i} style={[styles.dot, dotStyles.dot]}></View>;
+          return (
+            <View
+              key={i}
+              style={[styles.dot, i < pin.length && styles.dotActive]}></View>
+          );
         })}
     </View>
   );

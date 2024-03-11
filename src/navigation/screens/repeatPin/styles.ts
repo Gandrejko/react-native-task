@@ -6,13 +6,16 @@ const styles = EStyleSheet.create({
     backgroundColor: '$background',
     alignItems: 'center',
     width: '100%',
-    paddingTop: 20,
   },
   icon: {
     width: 50,
     height: 50,
     backgroundColor: '$secondary',
     borderRadius: 50,
+    marginRight: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '$primary',
   },
   title: {
     marginTop: 20,

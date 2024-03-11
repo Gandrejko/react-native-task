@@ -14,8 +14,8 @@ import profileReducer from './profileSlice';
 
 const persistConfig = {
   key: 'root',
-  version: 1,
   storage: AsyncStorage,
+  whiteList: ['profile'],
 };
 const reducers = combineReducers({
   profile: profileReducer,

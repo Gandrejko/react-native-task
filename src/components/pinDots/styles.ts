@@ -13,6 +13,9 @@ const styles = EStyleSheet.create({
     borderRadius: 50,
     backgroundColor: '$secondary',
   },
+  dotActive: {
+    backgroundColor: '$primary',
+  },
 });
 
 export default styles;

@@ -1,4 +1,5 @@
 import AppStatusBar from '@components/appStatusBar';
+import {useAppSelector} from '@hooks/redux';
 import {HomeStackProps} from '@navigation/navigationUtils';
 import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
@@ -12,7 +13,6 @@ import {
   ScrollView,
   View,
   Text,
-  StatusBar,
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -29,6 +29,7 @@ const Home = () => {
     },
     select: data => data.slice(0, 3),
   });
+  const {firstName, lastName} = useAppSelector(state => state.profile);
   const navigation = useNavigation<HomeStackProps['navigation']>();
   const {t} = useTranslation();
   return (
@@ -37,7 +38,9 @@ const Home = () => {
       <ScrollView>
         <View style={styles.banner}>
           <Text style={styles.subtitle}>{t('home.your_name')}</Text>
-          <Text style={styles.name}>John Doe</Text>
+          <Text style={styles.name}>
+            {firstName} {lastName}
+          </Text>
         </View>
         <View style={styles.card}>
           <View style={styles.cardContent}>

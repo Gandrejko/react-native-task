@@ -29,7 +29,7 @@ const useSession = () => {
 
         runAuthorizedUserFlow();
       } catch {
-        dispatch(resetProfile());
+        // dispatch(resetProfile());
         runUnauthorizedUserFlow();
       }
     };

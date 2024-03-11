@@ -3,7 +3,6 @@ import {Buffer} from 'buffer';
 
 export const restoreSession = async () => {
   const token = useAppSelector(state => state.profile.token);
-  console.log(token);
   if (!token) {
     throw new Error('Token not found');
   }

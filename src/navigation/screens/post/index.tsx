@@ -1,6 +1,7 @@
 import AppStatusBar from '@components/appStatusBar';
 import Button from '@components/button';
-import {goBack, HomeStackParamList} from '@navigation/navigationUtils';
+import {HomeStackParamList, HomeStackProps} from '@navigation/navigationUtils';
+import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useQueryClient} from '@tanstack/react-query';
 import {useQuery} from '@tanstack/react-query';
@@ -13,6 +14,7 @@ import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import styles from './styles';
 
 const Post = ({route}: StackScreenProps<HomeStackParamList, 'Post'>) => {
+  const navigation = useNavigation<HomeStackProps['navigation']>();
   const {postId} = route.params || {};
   const {t} = useTranslation();
   const queryClient = useQueryClient();
@@ -60,7 +62,7 @@ const Post = ({route}: StackScreenProps<HomeStackParamList, 'Post'>) => {
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button text={t('post.back')} onPress={goBack} />
+        <Button text={t('post.back')} onPress={() => navigation.goBack()} />
       </View>
     </SafeAreaView>
   );
