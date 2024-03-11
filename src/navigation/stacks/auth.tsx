@@ -28,7 +28,11 @@ const AuthStack = () => {
       />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="CreatePin" component={CreatePin} />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="CreatePin"
+        component={CreatePin}
+      />
       <Stack.Screen name="RepeatPin" component={RepeatPin} />
     </Stack.Navigator>
   );

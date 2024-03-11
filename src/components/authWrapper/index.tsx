@@ -5,6 +5,7 @@ import {SubmitHandler} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {
   KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   ScrollView,
   Text,
@@ -32,7 +33,11 @@ const AuthWrapper = ({
   return (
     <SafeAreaView style={styles.screen}>
       <AppStatusBar />
-      <KeyboardAvoidingView style={styles.content} behavior="padding" enabled>
+      <Image style={styles.bg} source={require('@assets/bg.png')} />
+      <KeyboardAvoidingView
+        style={styles.content}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled>
         <View style={styles.form}>
           <View style={styles.header}>
             <View style={styles.icon}>
@@ -45,9 +50,11 @@ const AuthWrapper = ({
           </View>
           <View style={styles.divider}></View>
           <ScrollView style={styles.inputs}>{children}</ScrollView>
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button text={t('auth.continue')} onPress={onSubmit} />
+          <Button
+            buttonStyles={styles.button}
+            text={t('auth.continue')}
+            onPress={onSubmit}
+          />
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

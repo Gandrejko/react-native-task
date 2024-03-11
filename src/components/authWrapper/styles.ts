@@ -55,11 +55,14 @@ const styles = EStyleSheet.create({
     backgroundColor: '$secondary',
     marginVertical: 20,
   },
-  inputs: {},
-  buttonContainer: {
-    padding: 15,
-    paddingTop: 0,
-    backgroundColor: '$background',
+  inputs: {
+    marginBottom: 60,
+  },
+  button: {
+    position: 'absolute',
+    left: 15,
+    right: 15,
+    bottom: 15,
   },
 });
 

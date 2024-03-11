@@ -7,7 +7,7 @@ import {IPost} from '@types';
 import axios from 'axios';
 import {LinearGradient} from 'expo-linear-gradient';
 import Card from './card';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   SafeAreaView,
@@ -34,6 +34,20 @@ const Home = () => {
   const {firstName, lastName} = useAppSelector(state => state.profile);
   const navigation = useNavigation<HomeStackProps['navigation']>();
   const {t} = useTranslation();
+
+  const postsNode = useMemo(
+    () =>
+      posts?.map(({id, title, body}) => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Post', {postId: id})}
+          key={id}
+          style={styles.post}>
+          <Text style={styles.postTitle}>{title}</Text>
+          <Text style={styles.postBody}>{body}</Text>
+        </TouchableOpacity>
+      )),
+    [posts],
+  );
   return (
     <SafeAreaView style={styles.screen}>
       <AppStatusBar backgroundColor={'#3dc8a0'} />
@@ -80,17 +94,7 @@ const Home = () => {
         </View>
         <View style={styles.postsContainer}>
           <Text style={styles.sectionTitle}>{t('home.posts')}</Text>
-          <View style={styles.posts}>
-            {posts?.map(({id, title, body}) => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Post', {postId: id})}
-                key={id}
-                style={styles.post}>
-                <Text style={styles.postTitle}>{title}</Text>
-                <Text style={styles.postBody}>{body}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          <View style={styles.posts}>{postsNode}</View>
         </View>
       </ScrollView>
     </SafeAreaView>

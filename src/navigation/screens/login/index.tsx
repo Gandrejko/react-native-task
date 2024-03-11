@@ -43,7 +43,7 @@ const Login = () => {
       const {token, ...profile} = data.data;
       await AsyncStorage.setItem('token', token);
       dispatch(setProfile(profile));
-      navigation.navigate('CreatePin');
+      navigation.replace('CreatePin');
     },
     onError: error => console.log(error),
   });
@@ -108,7 +108,7 @@ const Login = () => {
       <Button
         text={t('auth.create_account')}
         variant="outlined"
-        onPress={() => navigation.navigate('Register')}
+        onPress={() => navigation.replace('Register')}
       />
     </AuthWrapper>
   );
