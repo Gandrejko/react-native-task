@@ -10,7 +10,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import profileReducer from './profileSlice';
+import profile from './profileSlice';
+import settings from './settingsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +19,8 @@ const persistConfig = {
   whiteList: ['profile'],
 };
 const reducers = combineReducers({
-  profile: profileReducer,
+  profile: profile,
+  settings: settings,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

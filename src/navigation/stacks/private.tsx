@@ -20,6 +20,7 @@ function PrivateStack() {
         tabBarInactiveTintColor: colors.textLight.color,
         tabBarStyle: {
           backgroundColor: colors.background.color,
+          borderTopColor: colors.secondary.color,
         },
       }}>
       <Tab.Screen

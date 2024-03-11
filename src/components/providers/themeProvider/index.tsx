@@ -1,11 +1,17 @@
 import {darkTheme, lightTheme} from '@constants/theme';
+import {useAppSelector} from '@hooks/redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
 import {useEffect} from 'react';
-import {Appearance, useColorScheme} from 'react-native';
+import {Appearance, useColorScheme, View} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const useTheme = () => {
+type ThemeProviderProps = {
+  children: React.ReactNode;
+};
+const ThemeProvider = ({children}: ThemeProviderProps) => {
   const colorScheme = useColorScheme();
+  const primaryColor = useAppSelector(state => state.settings.primaryColor);
   useEffect(() => {
     (async () => {
       try {
@@ -21,7 +27,8 @@ const useTheme = () => {
   useEffect(() => {
     (async () => {
       try {
-        EStyleSheet.build(colorScheme === 'dark' ? darkTheme : lightTheme);
+        const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
+        EStyleSheet.build({...theme, $primary: primaryColor});
         if (typeof colorScheme === 'string') {
           await AsyncStorage.setItem('theme', colorScheme);
         }
@@ -29,7 +36,9 @@ const useTheme = () => {
         console.log('err', error);
       }
     })();
-  }, [colorScheme]);
+  }, [colorScheme, primaryColor]);
+
+  return <React.Fragment>{children}</React.Fragment>;
 };
 
-export default useTheme;
+export default ThemeProvider;

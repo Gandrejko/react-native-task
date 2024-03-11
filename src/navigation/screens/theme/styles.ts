@@ -14,7 +14,7 @@ const styles = EStyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-  list: {
+  themeList: {
     marginTop: 20,
     gap: 20,
   },
@@ -38,6 +38,20 @@ const styles = EStyleSheet.create({
     color: '$text',
     fontSize: 18,
     marginLeft: 10,
+  },
+  colors: {
+    marginTop: 20,
+    flexDirection: 'row',
+    gap: 20,
+    justifyContent: 'space-evenly',
+  },
+  item: {
+    width: 50,
+    height: 50,
+    borderRadius: 15,
+    color: '$background',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

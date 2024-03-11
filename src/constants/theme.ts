@@ -18,6 +18,8 @@ export const darkTheme = {
   $textLight: '#EBEFF5',
 };
 
+export const primaryColors = ['#04997b', '#b8281d', '#ad9e1a', '#1a6db0'];
+
 export const colors = EStyleSheet.create({
   background: {
     color: '$background',
