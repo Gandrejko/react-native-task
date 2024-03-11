@@ -1,5 +1,6 @@
 import AppStatusBar from '@components/appStatusBar';
-import {useAppSelector} from '@hooks/redux';
+import {newShade} from '@helpers/newShade';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {HomeStackProps} from '@navigation/navigationUtils';
 import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
@@ -34,6 +35,7 @@ const Home = () => {
   const {firstName, lastName} = useAppSelector(state => state.profile);
   const navigation = useNavigation<HomeStackProps['navigation']>();
   const {t} = useTranslation();
+  const primaryColor = useAppSelector(state => state.settings.primaryColor);
 
   const postsNode = useMemo(
     () =>
@@ -48,11 +50,14 @@ const Home = () => {
       )),
     [posts],
   );
+  const secondColor = newShade(primaryColor, 30);
   return (
     <SafeAreaView style={styles.screen}>
-      <AppStatusBar backgroundColor={'#3dc8a0'} />
+      <AppStatusBar backgroundColor={secondColor} />
       <ScrollView>
-        <LinearGradient colors={['#3dc8a0', '#159587']} style={styles.banner}>
+        <LinearGradient
+          colors={[secondColor, primaryColor]}
+          style={styles.banner}>
           <Text style={styles.subtitle}>{t('home.your_name')}</Text>
           <Text style={styles.name}>
             {firstName} {lastName}

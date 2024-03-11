@@ -68,6 +68,7 @@ const Theme = () => {
             );
           })}
         </View>
+        <Text style={styles.caution}>{t('settings.theme_caution')}</Text>
       </View>
     </SafeAreaView>
   );

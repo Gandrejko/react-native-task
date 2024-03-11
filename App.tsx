@@ -1,6 +1,6 @@
+import LanguageProvider from '@components/providers/languageProvider';
 import ThemeProvider from '@components/providers/themeProvider';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-import useLanguage from '@hooks/useLanguage';
 import Navigation from '@navigation';
 import {persistor, store} from '@store/store';
 import {createAsyncStoragePersister} from '@tanstack/query-async-storage-persister';
@@ -35,22 +35,23 @@ const persister = createAsyncStoragePersister({
 });
 
 function App() {
-  useLanguage();
   return (
     <PersistQueryClientProvider
       client={queryClient}
       persistOptions={{persister, maxAge: Infinity}}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <ThemeProvider>
-            <SafeAreaProvider>
-              <GestureHandlerRootView style={{flex: 1}}>
-                <BottomSheetModalProvider>
-                  <Navigation />
-                </BottomSheetModalProvider>
-              </GestureHandlerRootView>
-            </SafeAreaProvider>
-          </ThemeProvider>
+          <LanguageProvider>
+            <ThemeProvider>
+              <SafeAreaProvider>
+                <GestureHandlerRootView style={{flex: 1}}>
+                  <BottomSheetModalProvider>
+                    <Navigation />
+                  </BottomSheetModalProvider>
+                </GestureHandlerRootView>
+              </SafeAreaProvider>
+            </ThemeProvider>
+          </LanguageProvider>
         </PersistGate>
       </Provider>
     </PersistQueryClientProvider>

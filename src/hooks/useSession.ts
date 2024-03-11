@@ -1,7 +1,9 @@
-import {useAppDispatch} from '@hooks/redux';
+import {primaryColors} from '@constants/theme';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {resetProfile} from '@store/profileSlice';
+import {resetSettings, setPrimaryColor} from '@store/settingsSlice';
 import * as SecureStore from 'expo-secure-store';
 import {useCallback, useEffect} from 'react';
 import {restoreSession} from '@services/session';
@@ -30,7 +32,8 @@ const useSession = () => {
 
         runAuthorizedUserFlow();
       } catch {
-        // dispatch(resetProfile());
+        dispatch(resetProfile(), resetSettings());
+
         runUnauthorizedUserFlow();
       }
     };

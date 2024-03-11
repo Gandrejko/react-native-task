@@ -53,6 +53,10 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  caution: {
+    color: '$textLight',
+    marginTop: 20,
+  },
 });
 
 export default styles;

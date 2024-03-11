@@ -35,7 +35,8 @@
       "theme": "Theme",
       "logout": "Log Out",
       "basic": "Basic",
-      "other": "Other"
+      "other": "Other",
+      "theme_caution": "* After changing the theme you need to restart the application to apply changes."
     },
     "search": {
       "search": "Search",

@@ -4,10 +4,14 @@ import type {PayloadAction} from '@reduxjs/toolkit';
 
 type Settings = {
   primaryColor: string;
+  language: string;
+  theme: 'light' | 'dark';
 };
 
 const initialState: Settings = {
-  primaryColor: primaryColors[2],
+  primaryColor: primaryColors[0],
+  language: 'en',
+  theme: 'light',
 };
 
 export const settingsSlice = createSlice({
@@ -20,12 +24,19 @@ export const settingsSlice = createSlice({
     ) => {
       return {...state, primaryColor: action.payload};
     },
+    setLanguage: (state, action: PayloadAction<Settings['language']>) => {
+      return {...state, language: action.payload};
+    },
+    setTheme: (state, action: PayloadAction<Settings['theme']>) => {
+      return {...state, theme: action.payload};
+    },
     resetSettings: () => {
       return initialState;
     },
   },
 });
 
-export const {setPrimaryColor, resetSettings} = settingsSlice.actions;
+export const {setPrimaryColor, resetSettings, setLanguage, setTheme} =
+  settingsSlice.actions;
 
 export default settingsSlice.reducer;

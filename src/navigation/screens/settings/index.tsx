@@ -4,6 +4,7 @@ import {AppStackProps, SettingsStackProps} from '@navigation/navigationUtils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {resetProfile} from '@store/profileSlice';
+import {resetSettings} from '@store/settingsSlice';
 import {Image} from 'expo-image';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
@@ -20,7 +21,7 @@ const Settings = () => {
   const {firstName, lastName, image} = useAppSelector(state => state.profile);
 
   const logOut = async () => {
-    dispatch(resetProfile());
+    dispatch(resetProfile(), resetSettings());
     await SecureStore.deleteItemAsync('pin').catch(() => null);
     await AsyncStorage.removeItem('biometric').catch(() => null);
     globalNavigation.replace('AuthStack', {screen: 'Welcome'});

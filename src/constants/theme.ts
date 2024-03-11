@@ -15,7 +15,7 @@ export const darkTheme = {
   $primary: '#04997b',
   $secondary: '#212121',
   $text: '#fff',
-  $textLight: '#EBEFF5',
+  $textLight: '#9b9b9b',
 };
 
 export const primaryColors = ['#04997b', '#b8281d', '#ad9e1a', '#1a6db0'];

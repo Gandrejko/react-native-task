@@ -1,8 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
 import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 
-const useLanguage = () => {
+type LanguageProviderProps = {
+  children: React.ReactNode;
+};
+const LanguageProvider = ({children}: LanguageProviderProps) => {
   const {i18n} = useTranslation();
   useEffect(() => {
     (async () => {
@@ -16,6 +20,8 @@ const useLanguage = () => {
       }
     })();
   }, []);
+
+  return <React.Fragment>{children}</React.Fragment>;
 };
 
-export default useLanguage;
+export default LanguageProvider;
