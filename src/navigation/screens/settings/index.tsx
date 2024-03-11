@@ -40,19 +40,28 @@ const Settings = () => {
         </View>
         <View style={styles.section}>
           <Text style={styles.label}>{t('settings.basic')}</Text>
-          <SettingButton
-            onPress={() => navigation.navigate('Language')}
-            title={t('settings.language')}
-            iconName="web"
-          />
+          <View style={styles.sectionButtons}>
+            <SettingButton
+              onPress={() => navigation.navigate('Language')}
+              title={t('settings.language')}
+              iconName="web"
+            />
+            <SettingButton
+              onPress={() => navigation.navigate('Theme')}
+              title={t('settings.theme')}
+              iconName="invert-colors"
+            />
+          </View>
         </View>
         <View style={styles.section}>
           <Text style={styles.label}>{t('settings.other')}</Text>
-          <SettingButton
-            onPress={logOut}
-            title={t('settings.logout')}
-            iconName="logout"
-          />
+          <View style={styles.sectionButtons}>
+            <SettingButton
+              onPress={logOut}
+              title={t('settings.logout')}
+              iconName="logout"
+            />
+          </View>
         </View>
       </View>
     </SafeAreaView>

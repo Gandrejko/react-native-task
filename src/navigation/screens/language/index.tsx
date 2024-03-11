@@ -15,7 +15,7 @@ const Language = () => {
   const {t, i18n} = useTranslation();
   const language = i18n.language;
   useEffect(() => {
-    AsyncStorage.setItem('language', language);
+    (() => AsyncStorage.setItem('language', language).catch(() => null))();
   }, [language]);
   return (
     <SafeAreaView style={styles.screen}>

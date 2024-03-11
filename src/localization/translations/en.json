@@ -12,7 +12,7 @@
       "name": "Name",
       "personal_account": "Personal Account",
       "create_account": "Create Account",
-      "change_account": "Change Account",
+      "change_account": "Change Account"
     },
     "tabs": {
       "home": "Home",
@@ -32,6 +32,7 @@
     "settings": {
       "settings": "Settings",
       "language": "Language",
+      "theme": "Theme",
       "logout": "Log Out",
       "basic": "Basic",
       "other": "Other"

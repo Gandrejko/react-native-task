@@ -29,6 +29,7 @@ export type PrivateStackParamList = {
 export type SettingsStackParamList = {
   Settings: undefined;
   Language: undefined;
+  Theme: undefined;
 };
 
 export type HomeStackParamList = {

@@ -8,11 +8,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {PersistQueryClientProvider} from '@tanstack/react-query-persist-client';
 import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useColorScheme} from 'react-native';
+import {Appearance, useColorScheme} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import '@localization';
+import {ColorSchemeName} from 'react-native/Libraries/Utilities/Appearance';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
@@ -45,15 +46,34 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        if (colorScheme === 'dark') {
-          EStyleSheet.build(darkTheme);
-        } else {
-          EStyleSheet.build(lightTheme);
+        const theme = await AsyncStorage.getItem('theme');
+        if (theme && (theme === 'light' || theme === 'dark')) {
+          Appearance.setColorScheme(theme);
         }
-        const language =
-          (await AsyncStorage.getItem('language')) || i18n.language;
-        await i18n.changeLanguage(language);
-        await AsyncStorage.setItem('language', language);
+      } catch (error) {
+        console.log('err', error);
+      }
+    })();
+  }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        EStyleSheet.build(colorScheme === 'dark' ? darkTheme : lightTheme);
+        if (typeof colorScheme === 'string') {
+          await AsyncStorage.setItem('theme', colorScheme);
+        }
+      } catch (error) {
+        console.log('err', error);
+      }
+    })();
+  }, [colorScheme]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const language = await AsyncStorage.getItem('language');
+        if (language) {
+          await i18n.changeLanguage(language);
+        }
       } catch (error) {
         console.log('err', error);
       }
