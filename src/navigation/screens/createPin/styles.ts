@@ -13,7 +13,6 @@ const styles = EStyleSheet.create({
     height: 50,
     backgroundColor: '$secondary',
     borderRadius: 50,
-    marginRight: 20,
     justifyContent: 'center',
     alignItems: 'center',
     color: '$primary',

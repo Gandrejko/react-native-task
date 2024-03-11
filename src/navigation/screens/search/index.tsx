@@ -18,7 +18,10 @@ const Search = () => {
     const timer = setTimeout(() => {
       setFilteredPosts(
         posts?.filter(({title, body}) => {
-          return title.includes(search) || body.includes(search);
+          return (
+            title.toLowerCase().includes(search.toLowerCase()) ||
+            body.toLowerCase().includes(search.toLowerCase())
+          );
         }) || [],
       );
     }, 500);

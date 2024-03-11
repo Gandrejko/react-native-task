@@ -7,7 +7,6 @@ const styles = EStyleSheet.create({
   },
   banner: {
     height: 250,
-    backgroundColor: '$primary',
     color: '$background',
     paddingTop: 80,
     alignItems: 'center',
@@ -31,10 +30,15 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     margin: 20,
   },
-  image: {
+  imageContainer: {
     width: 130,
     height: 130,
-    backgroundColor: '$primary',
+    backgroundColor: '$secondary',
+    borderRadius: 10,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
     borderRadius: 10,
   },
   cardContent: {

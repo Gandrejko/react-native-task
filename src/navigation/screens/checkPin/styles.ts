@@ -6,9 +6,9 @@ const styles = EStyleSheet.create({
     backgroundColor: '$background',
     alignItems: 'center',
     width: '100%',
-    paddingTop: 20,
   },
   icon: {
+    marginTop: 20,
     width: 50,
     height: 50,
     backgroundColor: '$secondary',
@@ -20,6 +20,11 @@ const styles = EStyleSheet.create({
   title: {
     marginTop: 20,
     fontWeight: 'bold',
+  },
+  changeAccount: {
+    marginTop: 10,
+    color: '$primary',
+    fontSize: 16,
   },
   subtitle: {
     marginTop: 30,

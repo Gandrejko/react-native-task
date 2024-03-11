@@ -32,8 +32,7 @@ const AuthWrapper = ({
   return (
     <SafeAreaView style={styles.screen}>
       <AppStatusBar />
-      <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
-        <Image style={styles.bg} source={require('@assets/bg.png')} />
+      <KeyboardAvoidingView style={styles.content} behavior="padding" enabled>
         <View style={styles.form}>
           <View style={styles.header}>
             <View style={styles.icon}>
@@ -46,6 +45,8 @@ const AuthWrapper = ({
           </View>
           <View style={styles.divider}></View>
           <ScrollView style={styles.inputs}>{children}</ScrollView>
+        </View>
+        <View style={styles.buttonContainer}>
           <Button text={t('auth.continue')} onPress={onSubmit} />
         </View>
       </KeyboardAvoidingView>

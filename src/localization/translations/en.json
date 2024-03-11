@@ -12,6 +12,7 @@
       "name": "Name",
       "personal_account": "Personal Account",
       "create_account": "Create Account",
+      "change_account": "Change Account",
     },
     "tabs": {
       "home": "Home",

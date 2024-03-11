@@ -3,11 +3,12 @@ import Button from '@components/button';
 import NumKeyboard from '@components/numKeyboard';
 import PinDots from '@components/pinDots';
 import {AppStackProps} from '@navigation/navigationUtils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import * as LocalAuthentication from 'expo-local-authentication';
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {SafeAreaView, View, Text} from 'react-native';
+import {SafeAreaView, View, Text, Alert} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
@@ -22,9 +23,26 @@ const RepeatPin = () => {
     if (!compatible) {
       throw new Error('Biometrics is not available.');
     }
-    const result = await LocalAuthentication.authenticateAsync({
-      promptMessage: 'Do you want to allow "Dawma" to use Face ID',
-    });
+    const AsyncAlert = async () =>
+      new Promise(resolve => {
+        Alert.alert(`Do you want to allow "Dawma" to use Face ID`, '', [
+          {
+            text: "Don't Allow",
+            onPress: () => resolve(false),
+          },
+          {
+            text: 'Allow',
+            onPress: async () => {
+              await LocalAuthentication.authenticateAsync({
+                promptMessage: 'Do you want to allow "Dawma" to use Face ID',
+              });
+              resolve(true);
+            },
+          },
+        ]);
+      });
+    const biometric = await AsyncAlert();
+    await AsyncStorage.setItem('biometric', JSON.stringify(biometric));
   };
 
   const onPress = (number: number | string) => {
@@ -43,13 +61,13 @@ const RepeatPin = () => {
       if (result !== pinString) {
         setPin([]);
         alert('Pin is not correct');
-      } else {
-        await biometricLogin();
-        navigation.navigate('PrivateStack', {
-          screen: 'HomeStack',
-          params: {screen: 'Home'},
-        });
+        return;
       }
+      await biometricLogin();
+      navigation.replace('PrivateStack', {
+        screen: 'HomeStack',
+        params: {screen: 'Home'},
+      });
     } catch (err: any) {
       console.log('err', err);
     }

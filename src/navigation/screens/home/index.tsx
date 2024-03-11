@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import {IPost} from '@types';
 import axios from 'axios';
+import {LinearGradient} from 'expo-linear-gradient';
 import Card from './card';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
@@ -16,6 +17,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Image} from 'expo-image';
 import styles from './styles';
 
 const Home = () => {
@@ -34,14 +36,14 @@ const Home = () => {
   const {t} = useTranslation();
   return (
     <SafeAreaView style={styles.screen}>
-      <AppStatusBar />
+      <AppStatusBar backgroundColor={'#3dc8a0'} />
       <ScrollView>
-        <View style={styles.banner}>
+        <LinearGradient colors={['#3dc8a0', '#159587']} style={styles.banner}>
           <Text style={styles.subtitle}>{t('home.your_name')}</Text>
           <Text style={styles.name}>
             {firstName} {lastName}
           </Text>
-        </View>
+        </LinearGradient>
         <View style={styles.card}>
           <View style={styles.cardContent}>
             <Text style={styles.cardTitle}>{t('home.personal_advisor')}</Text>
@@ -55,7 +57,12 @@ const Home = () => {
               />
             </TouchableOpacity>
           </View>
-          <View style={styles.image}></View>
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.image}
+              source={require('@assets/personal.png')}
+            />
+          </View>
         </View>
         <View>
           <Text style={styles.sectionTitle}>{t('home.before')}</Text>

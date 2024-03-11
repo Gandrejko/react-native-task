@@ -3,8 +3,11 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const styles = EStyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#ccc',
+    backgroundColor: '$secondary',
     position: 'relative',
+  },
+  content: {
+    flex: 1,
   },
   bg: {
     position: 'absolute',
@@ -18,6 +21,7 @@ const styles = EStyleSheet.create({
     padding: 15,
     backgroundColor: '$background',
     flexGrow: 1,
+    flexShrink: 1,
     marginTop: 100,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -51,8 +55,11 @@ const styles = EStyleSheet.create({
     backgroundColor: '$secondary',
     marginVertical: 20,
   },
-  inputs: {
-    marginBottom: 40,
+  inputs: {},
+  buttonContainer: {
+    padding: 15,
+    paddingTop: 0,
+    backgroundColor: '$background',
   },
 });
 

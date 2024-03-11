@@ -21,6 +21,7 @@ const styles = EStyleSheet.create({
     marginRight: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    color: '$primary',
   },
   titleWrapper: {
     flex: 1,

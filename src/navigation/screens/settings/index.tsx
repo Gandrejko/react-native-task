@@ -1,13 +1,17 @@
 import SettingButton from '@components/settingButton';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {AppStackProps, SettingsStackProps} from '@navigation/navigationUtils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {resetProfile} from '@store/profileSlice';
 import {Image} from 'expo-image';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, StatusBar, Text, View} from 'react-native';
+import * as LocalAuthentication from 'expo-local-authentication';
+import * as SecureStore from 'expo-secure-store';
 import styles from './styles';
+
 const Settings = () => {
   const dispatch = useAppDispatch();
   const {t} = useTranslation();
@@ -17,6 +21,8 @@ const Settings = () => {
 
   const logOut = async () => {
     dispatch(resetProfile());
+    await SecureStore.deleteItemAsync('pin').catch(() => null);
+    await AsyncStorage.removeItem('biometric').catch(() => null);
     globalNavigation.replace('AuthStack', {screen: 'Welcome'});
   };
   return (

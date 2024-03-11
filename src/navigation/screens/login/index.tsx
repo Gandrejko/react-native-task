@@ -62,7 +62,7 @@ const Login = () => {
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
-            label="Name"
+            label={t('auth.name')}
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
             value={value}
@@ -82,7 +82,7 @@ const Login = () => {
             onBlur={onBlur}
             onChangeText={value => onChange(value)}
             value={value}
-            label="Password"
+            label={t('auth.password')}
             secureTextEntry={true}
             errorMessage={errors.password?.message}
           />

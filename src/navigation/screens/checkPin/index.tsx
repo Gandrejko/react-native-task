@@ -2,14 +2,16 @@ import AppStatusBar from '@components/appStatusBar';
 import Button from '@components/button';
 import NumKeyboard from '@components/numKeyboard';
 import PinDots from '@components/pinDots';
-import {AppStackProps, AuthStackProps} from '@navigation/navigationUtils';
+import {useAppSelector} from '@hooks/redux';
+import {AppStackProps} from '@navigation/navigationUtils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import * as LocalAuthentication from 'expo-local-authentication';
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, View, Text} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
 
 const CheckPin = () => {
@@ -17,6 +19,7 @@ const CheckPin = () => {
   const {t} = useTranslation();
   const navigation = useNavigation<AppStackProps['navigation']>();
   const [pin, setPin] = useState<number[]>([]);
+  const email = useAppSelector(state => state.profile.email);
   const onPress = (number: number | string) => {
     if (typeof number === 'number' && pin.length < PIN_LENGTH) {
       setPin([...pin, number]);
@@ -24,9 +27,11 @@ const CheckPin = () => {
   };
 
   const biometricLogin = async () => {
-    const compatible = await LocalAuthentication.hasHardwareAsync();
-    if (!compatible) {
-      throw new Error('Biometrics is not available.');
+    const biometric = JSON.parse(
+      (await AsyncStorage.getItem('biometric')) || 'false',
+    );
+    if (!biometric) {
+      throw new Error('Biometrics is not enabled');
     }
     const result = await LocalAuthentication.authenticateAsync();
     return result.success;
@@ -34,12 +39,16 @@ const CheckPin = () => {
 
   useEffect(() => {
     (async () => {
-      const result = await biometricLogin();
-      if (result) {
-        navigation.replace('PrivateStack', {
-          screen: 'HomeStack',
-          params: {screen: 'Home'},
-        });
+      try {
+        const result = await biometricLogin();
+        if (result) {
+          navigation.replace('PrivateStack', {
+            screen: 'HomeStack',
+            params: {screen: 'Home'},
+          });
+        }
+      } catch (err) {
+        console.log('err', err);
       }
     })();
   }, []);
@@ -69,9 +78,14 @@ const CheckPin = () => {
     <SafeAreaView style={styles.screen}>
       <AppStatusBar />
       <View style={styles.icon}>
-        <Icon name="cellphone" color={styles.icon.color} size={32} />
+        <Icon name="user" color={styles.icon.color} size={32} />
       </View>
-      <Text style={styles.title}>{t('auth.create_pin')}</Text>
+      <Text style={styles.title}>{email}</Text>
+      <Text
+        style={styles.changeAccount}
+        onPress={() => navigation.navigate('AuthStack', {screen: 'Welcome'})}>
+        {t('auth.change_account')}
+      </Text>
       <Text style={styles.subtitle}>{t('auth.enter_code')}</Text>
       <PinDots pin={pin} />
       <NumKeyboard

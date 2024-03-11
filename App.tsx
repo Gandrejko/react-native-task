@@ -47,8 +47,10 @@ function App() {
   const {i18n} = useTranslation();
   useEffect(() => {
     (async () => {
-      const language = (await AsyncStorage.getItem('language')) || undefined;
+      const language =
+        (await AsyncStorage.getItem('language')) || i18n.language;
       await i18n.changeLanguage(language);
+      await AsyncStorage.setItem('language', language);
     })();
   }, []);
   return (

@@ -4,7 +4,7 @@ import NumKeyboard from '@components/numKeyboard';
 import PinDots from '@components/pinDots';
 import {AuthStackProps} from '@navigation/navigationUtils';
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, View, Text} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
@@ -16,13 +16,6 @@ const CreatePin = () => {
   const {t} = useTranslation();
   const navigation = useNavigation<AuthStackProps['navigation']>();
   const [pin, setPin] = useState<number[]>([]);
-
-  useEffect(() => {
-    const removePin = async () => {
-      await SecureStore.deleteItemAsync('pin');
-    };
-    removePin();
-  }, []);
 
   const onPress = (number: number | string) => {
     if (typeof number === 'number' && pin.length < PIN_LENGTH) {
