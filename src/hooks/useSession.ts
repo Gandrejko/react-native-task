@@ -1,12 +1,13 @@
+import {useAppDispatch} from '@hooks/redux';
 import {useNavigation} from '@react-navigation/native';
-import {useQueryClient} from '@tanstack/react-query';
+import {resetProfile} from '@store/profileSlice';
 import * as SecureStore from 'expo-secure-store';
 import {useCallback, useEffect} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {restoreSession} from '@services/session';
 import {AppStackProps} from '@navigation/navigationUtils';
 
 const useSession = () => {
+  const dispatch = useAppDispatch();
   const navigation = useNavigation<AppStackProps['navigation']>();
   const runUnauthorizedUserFlow = useCallback(() => {
     navigation.replace('AuthStack', {screen: 'Welcome'});
@@ -28,7 +29,7 @@ const useSession = () => {
 
         runAuthorizedUserFlow();
       } catch {
-        await AsyncStorage.removeItem('session').catch(() => null);
+        dispatch(resetProfile());
         runUnauthorizedUserFlow();
       }
     };

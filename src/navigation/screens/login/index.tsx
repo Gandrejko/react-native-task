@@ -1,9 +1,10 @@
 import AuthWrapper from '@components/authWrapper';
 import Button from '@components/button';
 import TextInput from '@components/textInput';
-import {AppStackProps, AuthStackProps} from '@navigation/navigationUtils';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useAppDispatch} from '@hooks/redux';
+import {AuthStackProps} from '@navigation/navigationUtils';
 import {useNavigation} from '@react-navigation/native';
+import {setProfile} from '@store/profileSlice';
 import {useMutation} from '@tanstack/react-query';
 import axios from 'axios/index';
 import React from 'react';
@@ -18,6 +19,7 @@ export type LoginFormValues = {
 const Login = () => {
   const {t} = useTranslation();
   const navigation = useNavigation<AuthStackProps['navigation']>();
+  const dispatch = useAppDispatch();
   const {
     handleSubmit,
     control,
@@ -37,7 +39,7 @@ const Login = () => {
         password: '0lelplR',
       }),
     onSuccess: async data => {
-      await AsyncStorage.setItem('session', JSON.stringify(data.data));
+      dispatch(setProfile(data.data));
       navigation.navigate('CreatePin');
     },
     onError: error => console.log(error),

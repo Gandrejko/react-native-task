@@ -1,19 +1,20 @@
 import SettingButton from '@components/settingButton';
+import {useAppDispatch} from '@hooks/redux';
 import {AppStackProps, SettingsStackProps} from '@navigation/navigationUtils';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-import {log} from 'expo/build/devtools/logger';
+import {resetProfile} from '@store/profileSlice';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 import styles from './styles';
 const Settings = () => {
+  const dispatch = useAppDispatch();
   const {t} = useTranslation();
   const navigation = useNavigation<SettingsStackProps['navigation']>();
   const globalNavigation = useNavigation<AppStackProps['navigation']>();
 
   const logOut = async () => {
-    await AsyncStorage.removeItem('session');
+    dispatch(resetProfile());
     globalNavigation.replace('AuthStack', {screen: 'Welcome'});
   };
   return (

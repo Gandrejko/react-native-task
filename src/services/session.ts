@@ -1,12 +1,12 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useAppSelector} from '@hooks/redux';
 import {Buffer} from 'buffer';
 
 export const restoreSession = async () => {
-  const session = await AsyncStorage.getItem('session');
-  if (!session) {
-    throw new Error('Session not found');
+  const token = useAppSelector(state => state.profile.token);
+  console.log(token);
+  if (!token) {
+    throw new Error('Token not found');
   }
-  const {token} = JSON.parse(session);
   const parts = token
     .split('.')
     .map((part: string) =>
@@ -17,7 +17,6 @@ export const restoreSession = async () => {
     );
   const jwt = JSON.parse(parts[1]);
 
-  // check if previous JWT token expired
   if (Date.now() >= jwt.exp * 1000) {
     throw new Error('Session expired');
   }
