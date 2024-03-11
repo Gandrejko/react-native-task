@@ -1,8 +1,9 @@
-import {useAppSelector} from '@hooks/redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Buffer} from 'buffer';
 
 export const restoreSession = async () => {
-  const token = useAppSelector(state => state.profile.token);
+  const token = await AsyncStorage.getItem('token');
+
   if (!token) {
     throw new Error('Token not found');
   }

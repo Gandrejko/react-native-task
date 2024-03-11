@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import {UserResponse} from '@types';
 
-const initialState: Partial<UserResponse> = {};
+const initialState: Partial<Omit<UserResponse, 'token'>> = {};
 
 export const profileSlice = createSlice({
   name: 'profile',

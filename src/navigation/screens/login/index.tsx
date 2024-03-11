@@ -3,6 +3,7 @@ import Button from '@components/button';
 import TextInput from '@components/textInput';
 import {useAppDispatch} from '@hooks/redux';
 import {AuthStackProps} from '@navigation/navigationUtils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {setProfile} from '@store/profileSlice';
 import {useMutation} from '@tanstack/react-query';
@@ -39,7 +40,9 @@ const Login = () => {
         password: '0lelplR',
       }),
     onSuccess: async data => {
-      dispatch(setProfile(data.data));
+      const {token, ...profile} = data.data;
+      await AsyncStorage.setItem('token', token);
+      dispatch(setProfile(profile));
       navigation.navigate('CreatePin');
     },
     onError: error => console.log(error),

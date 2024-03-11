@@ -1,4 +1,5 @@
 import {useAppDispatch} from '@hooks/redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {resetProfile} from '@store/profileSlice';
 import * as SecureStore from 'expo-secure-store';
