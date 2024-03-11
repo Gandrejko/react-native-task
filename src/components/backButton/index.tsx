@@ -1,3 +1,4 @@
+import {colors} from '@constants/theme';
 import {goBack} from '@navigation/navigationUtils';
 import React from 'react';
 import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
@@ -7,7 +8,7 @@ import styles from './styles';
 const BackButton = (props: TouchableOpacityProps) => {
   return (
     <TouchableOpacity onPress={goBack} {...props} style={styles.button}>
-      <Icon name={'chevron-left'} color={'#000'} size={32} />
+      <Icon name={'chevron-left'} color={colors.text.color} size={32} />
     </TouchableOpacity>
   );
 };

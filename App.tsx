@@ -1,3 +1,4 @@
+import {darkTheme, lightTheme} from '@constants/theme';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import Navigation from '@navigation';
 import {persistor, store} from '@store/store';
@@ -7,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {PersistQueryClientProvider} from '@tanstack/react-query-persist-client';
 import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
+import {useColorScheme} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -14,13 +16,7 @@ import '@localization';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
-EStyleSheet.build({
-  $background: '#fff',
-  $primary: '#04997b',
-  $secondary: '#EBEFF5',
-  $text: '#06070A',
-  $textLight: '#606773',
-});
+EStyleSheet.build(lightTheme);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,13 +40,23 @@ const persister = createAsyncStoragePersister({
 });
 
 function App() {
+  let colorScheme = useColorScheme();
   const {i18n} = useTranslation();
   useEffect(() => {
     (async () => {
-      const language =
-        (await AsyncStorage.getItem('language')) || i18n.language;
-      await i18n.changeLanguage(language);
-      await AsyncStorage.setItem('language', language);
+      try {
+        if (colorScheme === 'dark') {
+          EStyleSheet.build(darkTheme);
+        } else {
+          EStyleSheet.build(lightTheme);
+        }
+        const language =
+          (await AsyncStorage.getItem('language')) || i18n.language;
+        await i18n.changeLanguage(language);
+        await AsyncStorage.setItem('language', language);
+      } catch (error) {
+        console.log('err', error);
+      }
     })();
   }, []);
   return (

@@ -49,6 +49,7 @@ const styles = EStyleSheet.create({
   aboutText: {
     fontSize: 16,
     lineHeight: 30,
+    color: '$text',
   },
   commentsList: {
     gap: 15,
@@ -61,6 +62,7 @@ const styles = EStyleSheet.create({
   commentName: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '$text',
   },
   commentEmail: {
     fontSize: 16,
@@ -69,6 +71,7 @@ const styles = EStyleSheet.create({
   },
   commentBody: {
     fontSize: 16,
+    color: '$text',
   },
   buttonContainer: {
     padding: 20,

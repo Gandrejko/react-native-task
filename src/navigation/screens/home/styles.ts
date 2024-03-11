@@ -3,7 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const styles = EStyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#secondary',
+    backgroundColor: '$secondary',
   },
   banner: {
     height: 250,
@@ -89,9 +89,13 @@ const styles = EStyleSheet.create({
     borderRadius: 15,
   },
   postTitle: {
+    color: '$text',
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  postBody: {
+    color: '$text',
   },
 });
 

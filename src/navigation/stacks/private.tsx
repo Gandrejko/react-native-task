@@ -1,3 +1,4 @@
+import {colors} from '@constants/theme';
 import {PrivateStackParamList} from '@navigation/navigationUtils';
 import Search from '@navigation/screens/search';
 import HomeStack from '@navigation/stacks/home';
@@ -15,6 +16,11 @@ function PrivateStack() {
       initialRouteName={'HomeStack'}
       screenOptions={{
         headerShown: false,
+        tabBarActiveTintColor: colors.primary.color,
+        tabBarInactiveTintColor: colors.textLight.color,
+        tabBarStyle: {
+          backgroundColor: colors.background.color,
+        },
       }}>
       <Tab.Screen
         options={{

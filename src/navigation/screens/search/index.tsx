@@ -1,6 +1,8 @@
 import AppStatusBar from '@components/appStatusBar';
+import {colors} from '@constants/theme';
+import {useQuery} from '@tanstack/react-query';
 import {IPost} from '@types';
-import {useQueryClient} from '@tanstack/react-query';
+import axios from 'axios/index';
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
@@ -10,8 +12,15 @@ import styles from './styles';
 const Search = () => {
   const {t} = useTranslation();
   const [search, setSearch] = useState<string>('');
-  const queryClient = useQueryClient();
-  const posts = queryClient.getQueryData<IPost[]>(['posts']);
+  const {data: posts} = useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const {data} = await axios.get<IPost[]>(
+        'https://jsonplaceholder.typicode.com/posts',
+      );
+      return data;
+    },
+  });
   const [filteredPosts, setFilteredPosts] = useState<IPost[]>(posts || []);
 
   useEffect(() => {
@@ -35,7 +44,7 @@ const Search = () => {
       <ScrollView style={styles.content}>
         <Text style={styles.title}>{t('search.search')}</Text>
         <View style={styles.inputContainer}>
-          <Icon name="magnify" size={32} />
+          <Icon name="magnify" color={colors.text.color} size={32} />
           <TextInput
             placeholder={t('search.search_products')}
             placeholderTextColor={styles.placeholder.color}

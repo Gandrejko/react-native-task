@@ -41,6 +41,7 @@ const styles = EStyleSheet.create({
     borderRadius: 15,
   },
   postTitle: {
+    color: '$text',
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
