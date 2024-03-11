@@ -9,6 +9,9 @@ import styles from './styles';
 const languages = [
   {value: 'en', label: 'English'},
   {value: 'ar', label: 'Arabic'},
+  {value: 'ua', label: 'Ukrainian'},
+  {value: 'es', label: 'Spanish'},
+  {value: 'chn', label: 'Chinese'},
 ];
 
 const Language = () => {

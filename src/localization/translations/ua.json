@@ -1,0 +1,53 @@
+{
+  "translation": {
+    "auth": {
+      "sign_in": "Увійти",
+      "sign_up": "Зареєструватися",
+      "continue": "Продовжити",
+      "create_pin": "Створити PIN-код",
+      "repeat_pin": "Повторіть PIN-код",
+      "enter_code": "Введіть 5-значний код",
+      "email": "E-mail",
+      "password": "Пароль",
+      "name": "Ім'я",
+      "personal_account": "Особистий кабінет",
+      "create_account": "Створити обліковий запис",
+      "change_account": "Змінити обліковий запис"
+    },
+    "tabs": {
+      "home": "Головна",
+      "search": "Пошук",
+      "settings": "Налаштування"
+    },
+    "home": {
+      "your_name": "Ваше ім'я",
+      "personal_advisor": "Персональний консультант",
+      "schedule": "Запланувати дзвінок",
+      "before": "Перед початком",
+      "link_bank": "Підключіть свій банківський рахунок",
+      "add_wallet": "Додати гаманець",
+      "steps": "кроків",
+      "posts": "Пости"
+    },
+    "settings": {
+      "settings": "Налаштування",
+      "language": "Мова",
+      "theme": "Тема",
+      "logout": "Вийти",
+      "basic": "Основне",
+      "other": "Інше",
+      "theme_caution": "* Після зміни теми потрібно перезапустити додаток, щоб застосувати зміни."
+    },
+    "search": {
+      "search": "Пошук",
+      "search_products": "Пошук товарів",
+      "name": "Ім'я",
+      "id": "ID"
+    },
+    "post": {
+      "about": "Про",
+      "comments": "Коментарі",
+      "back": "Назад"
+    }
+  }
+}

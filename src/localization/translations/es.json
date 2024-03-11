@@ -1,0 +1,60 @@
+{
+  "translation": {
+    "auth": {
+      "sign_in": "Iniciar sesión",
+      "sign_up": "Registrarse",
+      "continue": "Continuar",
+      "create_pin": "Crear código PIN",
+      "repeat_pin": "Repetir código PIN",
+      "enter_code": "Introduzca un código de 5 dígitos",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "name": "Nombre",
+      "personal_account": "Cuenta personal",
+      "create_account": "Crear cuenta",
+      "change_account": "Cambiar cuenta"
+    },
+    "tabs": {
+      "home": "Inicio",
+      "search": "Buscar",
+      "settings": "Configuración"
+    },
+    "home": {
+      "your_name": "Tu nombre",
+      "personal_advisor": "Asesor personal",
+      "schedule": "Programar una llamada",
+      "before": "Antes de empezar",
+      "link_bank": "Enlaza tu cuenta bancaria",
+      "add_wallet": "Añadir cartera",
+      "steps": "pasos",
+      "posts": "Publicaciones"
+    },
+    "settings": {
+      "settings": "Configuración",
+      "language": "Idioma",
+      "theme": "Tema",
+      "logout": "Cerrar sesión",
+      "basic": "Básico",
+      "other": "Otro",
+      "theme_caution": "* Después de cambiar el tema, debes reiniciar la aplicación para aplicar los cambios."
+    },
+    "search": {
+      "search": "Buscar",
+      "search_products": "Buscar productos",
+      "name": "Nombre",
+      "id": "ID"
+    },
+    "post": {
+      "about": "Acerca de",
+      "comments": "Comentarios",
+      "back": "Atrás"
+    },
+    "welcome": {
+      "lending": "Crowd Lending",
+      "estate": "Bienes raíces colectivos",
+      "commodities": "Productos básicos",
+      "efts": "ETF",
+      "crypto": "Criptomoneda"
+    }
+  }
+}
