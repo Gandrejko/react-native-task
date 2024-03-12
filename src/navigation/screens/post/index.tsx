@@ -47,18 +47,20 @@ const Post = ({route}: StackScreenProps<HomeStackParamList, 'Post'>) => {
               <Text style={styles.aboutText}>{post?.body}</Text>
             </View>
           </View>
-          <View style={styles.section}>
-            <Text style={styles.label}>{t('post.comments')}</Text>
-            <View style={styles.commentsList}>
-              {comments?.map(comment => (
-                <View style={styles.comment} key={comment.id}>
-                  <Text style={styles.commentName}>{comment.name}</Text>
-                  <Text style={styles.commentEmail}>{comment.email}</Text>
-                  <Text style={styles.commentBody}>{comment.body}</Text>
-                </View>
-              ))}
+          {comments && (
+            <View style={styles.section}>
+              <Text style={styles.label}>{t('post.comments')}</Text>
+              <View style={styles.commentsList}>
+                {comments?.map(comment => (
+                  <View style={styles.comment} key={comment.id}>
+                    <Text style={styles.commentName}>{comment.name}</Text>
+                    <Text style={styles.commentEmail}>{comment.email}</Text>
+                    <Text style={styles.commentBody}>{comment.body}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
-          </View>
+          )}
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>

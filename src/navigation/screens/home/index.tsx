@@ -97,10 +97,12 @@ const Home = () => {
             />
           </ScrollView>
         </View>
-        <View style={styles.postsContainer}>
-          <Text style={styles.sectionTitle}>{t('home.posts')}</Text>
-          <View style={styles.posts}>{postsNode}</View>
-        </View>
+        {posts && (
+          <View style={styles.postsContainer}>
+            <Text style={styles.sectionTitle}>{t('home.posts')}</Text>
+            <View style={styles.posts}>{postsNode}</View>
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
