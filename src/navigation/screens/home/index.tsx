@@ -1,6 +1,7 @@
 import AppStatusBar from '@components/appStatusBar';
+import {colors} from '@constants/theme';
 import {newShade} from '@helpers/newShade';
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {useAppSelector} from '@hooks/redux';
 import {HomeStackProps} from '@navigation/navigationUtils';
 import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
@@ -35,7 +36,6 @@ const Home = () => {
   const {firstName, lastName} = useAppSelector(state => state.profile);
   const navigation = useNavigation<HomeStackProps['navigation']>();
   const {t} = useTranslation();
-  const primaryColor = useAppSelector(state => state.settings.primaryColor);
 
   const postsNode = useMemo(
     () =>
@@ -50,6 +50,7 @@ const Home = () => {
       )),
     [posts],
   );
+  const primaryColor = colors.primary.color;
   const secondColor = newShade(primaryColor, 30);
   return (
     <SafeAreaView style={styles.screen}>
