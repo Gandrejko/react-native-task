@@ -11,6 +11,7 @@ import axios from 'axios/index';
 import React from 'react';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
+import {Alert} from 'react-native';
 
 export type LoginFormValues = {
   name: string;
@@ -45,7 +46,7 @@ const Login = () => {
       dispatch(setProfile(profile));
       navigation.replace('CreatePin');
     },
-    onError: error => console.log(error),
+    onError: error => Alert.alert('Error', error.message, [{text: 'OK'}]),
   });
 
   const onSubmit: SubmitHandler<LoginFormValues> = data => {
